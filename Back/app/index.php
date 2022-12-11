@@ -2,8 +2,17 @@
 
 use App\Model\Route\Route;
 
+header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Headers: authorization");
+
 require_once 'vendor/autoload.php';
 
+if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+    die;
+}
+
+session_start();
 // On le path du dossier Controller
 $controllerDir = dirname(__FILE__) . '/src/Controller';
 
@@ -28,7 +37,6 @@ foreach ($controllers as $controller) {
 
     // On instancie une reflexion class pour chaque controller afin d'obtenir des informations sur cette class (Controller)
     $reflection = new ReflectionClass($controller);
-
     // On zoom un peu et on prends chaque méthod dans chaque controller
     foreach ($reflection->getMethods() as $method) {
         //On zoom encore pour avoir tout les attributs
@@ -66,7 +74,7 @@ foreach ($routesObj as $route) {
 
     echo [new $controlerClassName, $action](...$params);
     exit();
-
+    
 }
 
 echo "NO MATCH";
