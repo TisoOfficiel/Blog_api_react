@@ -2,7 +2,7 @@ import {ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useRef, use
 import Post from "./Post";
 import useGetCookies from "./CookieInterface";
 import COCO from "./COCO";
-
+import {NavLink} from "react-router-dom";
 type Data = {
     // Add the properties and types of the data here
     id: number,
@@ -41,23 +41,40 @@ export default function Home(){
             setIsVisible(true)
         }
 
-        // Update the document title using the isVisible state
-        document.title = isVisible ? 'Content is visible' : 'Content is hidden';
     }, [isVisible]);
+     
     return (
         <>
-
-        <h1>Home</h1>
+            <nav>
+                <p>HETIC</p>
+                <ul>
+                    <li>
+                        <NavLink to={'/'}>Home</NavLink>
+                    </li>
+                                       
+                   {isVisible ? 
+                    <li>
+                        <NavLink to={'/register'}>Register</NavLink>
+                    </li> :  ""
+                    }
+                    {isVisible ? 
+                      "":
+                    <li>
+                        <NavLink to={'/'}>Se déconnecter</NavLink>
+                    </li>
+                    }
+                </ul>
+            </nav>
             {isVisible ? '' : <COCO/>}
             <div>
                 {data ? (
-                    <ul>
+                    <div className="body-container">
                         {data.map((value, index) => {
                             return (<Post key={index} {...value}/>)
                         })}
-                    </ul>
+                    </div>
                 ) : (
-                    <p>Loading...</p>
+                    <p>Loading post...</p>
                 )}
             </div>
         </>
