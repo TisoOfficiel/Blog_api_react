@@ -65,15 +65,14 @@ export default function COCO() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="title">Title</label>
-            <input type="text" name="title" onChange={handleChange}/>
-            <br/>
-            <label htmlFor="content">Content</label>
-            <textarea name={"content"} onChange={handleChange}></textarea>
-
-            <br/>
-            <button type="submit">Submit</button>
-        </form>
+        <div className="post-submit-container">            
+            <form onSubmit={handleSubmit}>
+                <div className="post-submit-content">
+                    <input placeholder="Titre du post" type="text" name="title" onChange={handleChange}/>
+                    <textarea name={"content"} onChange={handleChange}></textarea>
+                </div>
+                <button className="btn" type="submit">Tweeter</button>
+            </form>
+        </div>
     );
 }

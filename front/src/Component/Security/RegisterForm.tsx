@@ -1,6 +1,7 @@
 import {ChangeEvent, FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
-
+import {NavLink} from "react-router-dom";
+import register_illustration from "./asset/register_illustration.jpg";
 export interface formDataInterface {
     lastname:string,
     firstname:string,
@@ -46,20 +47,28 @@ export default function RegisterForm(){
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="lastname">Lastname</label>
-            <input type="text" name="lastname" onChange={handleChange}/>
-            <br/>
-            <label htmlFor="firstname">Firstname</label>
-            <input type="text" name="firstname" onChange={handleChange}/>
-            <br/>
-            <label htmlFor="login">Username</label>
-            <input type="text" name="login" onChange={handleChange}/>
-            <br/>
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" onChange={handleChange}/>
-            <br/>
-            <button type="submit">Submit</button>
-        </form>
+
+        <div className="form-container">
+            <div className="form-register">
+
+                <div className="form-register-img">
+                    <img className="register-illustration" src={register_illustration} alt="register representation" />
+                </div>
+
+                <form className="form-register-content" onSubmit={handleSubmit}>
+                    <div className="register-input">
+                        
+                        <input placeholder="Lastname" type="text" name="lastname" onChange={handleChange}/>
+                        <input placeholder="Firstname"type="text" name="firstname" onChange={handleChange}/>
+                        <input placeholder="login"type="text" name="login" onChange={handleChange}/>
+                        <input placeholder="password" type="password" name="password" onChange={handleChange}/>
+                    </div>
+                    <p>Déja un compte ? Connecter-vous <NavLink to="/login" className="active">ici</NavLink></p>
+                    <NavLink to="/">Retourner a la page d'accueil</NavLink>
+                    <button className="btn btn-submit" type="submit">S'inscire</button>
+                </form>
+                
+            </div>
+        </div>
     )
 }

@@ -9,11 +9,11 @@ export interface Props{
 
 export default function Post({id,title, content,author,created_at,updated_at}:Props){
     return(
-        <div>
-            <p>{title}</p>
-            <p>{content}</p>
-            <p>{author}</p>
-            <p>{created_at}</p>
+        <div className={"post-container"}>
+            <p className="post-author">@{author}</p>
+            <h2 className="post-title">{title}</h2>
+            <p className={"post-content"}>{content.replace("<br />","\n")}</p>
+            <p className={"post-date"}>Posté le : {created_at}</p>
         </div>
 
     )

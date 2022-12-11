@@ -1,12 +1,14 @@
-import {ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useRef, useState} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import { ChangeEvent, Dispatch, FormEvent, SetStateAction, useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import login_illustration from "./asset/login_illustration.jpg";
+import {NavLink} from "react-router-dom";
 export interface formDataInterface {
     login: string,
     password: string
 }
 
-export default function LoginForm(){
-    const [formData, setFormData] = useState<formDataInterface>({login: "",password: ""})
+export default function LoginForm() {
+    const [formData, setFormData] = useState<formDataInterface>({ login: "", password: "" })
     const navigate = useNavigate()
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -18,16 +20,16 @@ export default function LoginForm(){
             }),
             credentials: "include",
             headers: new Headers({
-                "Authorization" : "Basic amZnbWFpbC5jb206cGFzc3dvcmQ=",
-                "Content-type":  "application/x-www-form-urlencoded"
+                "Authorization": "Basic amZnbWFpbC5jb206cGFzc3dvcmQ=",
+                "Content-type": "application/x-www-form-urlencoded"
             })
         })
-        .then(data => data.json())
-        .then(json => {
-            if(json.token){
-                navigate('/')
-            }
-        })
+            .then(data => data.json())
+            .then(json => {
+                if (json.token) {
+                    navigate('/')
+                }
+            })
     }
 
     const handleChange = (e: ChangeEvent) => {
@@ -41,16 +43,29 @@ export default function LoginForm(){
     }
 
 
-    
+
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="login">Username</label>
-            <input type="text" name="login" onChange={handleChange}/>
-            <br/>
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" onChange={handleChange}/>
-            <br/>
-            <button type="submit">Submit</button>
-        </form>
+        <div className="form-container">
+            <div className="form-login">
+
+                <div className="form-login-img">
+                    <img className="login-illustration" src={login_illustration} alt="login representation" />
+                </div>
+
+                <form className="form-login-content" onSubmit={handleSubmit}>
+                    <div className="login-input">
+                        
+                        <input placeholder="Login" type="text" name="login" onChange={handleChange} />
+                       
+                        <input placeholder="Password" type="password" name="password" onChange={handleChange} />
+                    </div>
+                    <p>Pas de compte ? Inscrivez-vous <NavLink to="/register" className="active">ici</NavLink></p>
+                    <NavLink to="/">Retourner a la page d'accueil</NavLink>
+                    <button className="btn btn-submit" type="submit">Se connecter</button>
+                </form>
+                
+            </div>
+        </div>
+
     )
 }
