@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Model\Entity;
+use App\Base\BaseEntity;
 
 final class Post extends BaseEntity
 {
@@ -105,7 +106,7 @@ final class Post extends BaseEntity
     /**
      * @return string
      */
-    public function getCreatedAt(): string
+    public function getCreated_at(): string
     {
         return $this->created_at;
     }
@@ -114,7 +115,7 @@ final class Post extends BaseEntity
      * @param string $created_at
      * @return Post
      */
-    public function setCreatedAt(string $created_at): Post
+    public function setCreated_at(string $created_at): Post
     {
         $this->created_at = $created_at;
         return $this;
@@ -123,7 +124,7 @@ final class Post extends BaseEntity
     /**
      * @return string
      */
-    public function getUpdatedAt(): string
+    public function getUpdated_at(): string
     {
         return $this->updated_at;
     }
@@ -132,7 +133,7 @@ final class Post extends BaseEntity
      * @param string $updated_at
      * @return Post
      */
-    public function setUpdatedAt(string $updated_at): Post
+    public function setUpdated_at(string $updated_at): Post
     {
         $this->updated_at = $updated_at;
         return $this;

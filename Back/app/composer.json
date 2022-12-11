@@ -1,5 +1,5 @@
 {
-    "version": "0.2.1",
+    "version": "1.2.1",
     "name": "romai/back",
     "autoload": {
         "psr-4": {
@@ -12,5 +12,7 @@
             "email": "romainlhuillier94@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "firebase/php-jwt": "^6.3"
+    }
 }
